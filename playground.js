@@ -6,7 +6,7 @@
 
 // const myArr=['rock', 'paper', 'scissors', 'lizard', 'spock'];
 
-// myFu(...myArr);// 
+// myFu(...myArr);//
 
 // const arr=[]
 // try{
@@ -35,7 +35,6 @@
 //   console.log('\t',i)
 // }
 
-
 // generator arrow function
 
 // const gen =  () =>*{
@@ -54,3 +53,33 @@
 // console.log(JSON.parse(JSON.stringify(str1)))
 // console.log(JSON.parse(JSON.stringify(str)))
 
+// (function () {
+//   var a = (b = 5);
+// })();
+
+// console.log(a);//5
+
+// async function get() {
+//   return await Promise.resolve(23);
+// }
+
+// const d = get();
+
+// console.log(get());
+
+// function re() {
+//   return new Promise(r => {
+//     setTimeout(() => {
+//       r("resovle");
+//     }, 1000);
+//   });
+// }
+
+// console.log(re());
+
+const t =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MTQ3MjA5OTg0OTY5MWE0NjZlODEwOCIsImlhdCI6MTY3OTU0NjMzNiwiZXhwIjoxNjgyMTM4MzM2fQ.tUhTyZFAdUASpGqKlPt8cJfAoBZofpDpaLMiZCKj6jQ";
+const t2 =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MTQ3MjA5OTg0OTY5MWE0NjZlODEwOCIsImlhdCI6MTY3OTU0NjMzNiwiZXhwIjoxNjgyMTM4MzM2fQ.tUhTyZFAdUASpGqKlPt8cJfAoBZofpDpaLMiZCKj6jQ";
+
+console.log(t === t2);
