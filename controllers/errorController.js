@@ -23,29 +23,50 @@ const handleJWTError = () =>
 const handlExpiredJWTError = () =>
   new AppError("Token expired, please login again!", 401);
 
-const sendErrorDev = (err, res) => {
-  res.status(err.statusCode).json({
-    status: err.status,
-    error: err,
-    message: err.message,
-    stack: err.stack,
-  });
+const sendErrorDev = (err, req, res) => {
+  if (req.originalUrl.startsWith("/api"))
+    return res.status(err.statusCode).json({
+      status: err.status,
+      error: err,
+      message: err.message,
+      stack: err.stack,
+    });
+  else
+    return res.status(err.statusCode).render("error", {
+      title: "Not Found",
+      msg: err.message,
+    });
 };
 
-const sendErrorProd = (err, res) => {
-  if (err.isOperational) {
-    res.status(err.statusCode).json({
-      status: err.status,
-      message: err.message || "An error occured",
-    });
-  } else {
+const sendErrorProd = (err, req, res) => {
+  //API
+  if (req.originalUrl.startsWith("/api")) {
+    if (err.isOperational) {
+      return res.status(err.statusCode).json({
+        status: err.status,
+        message: err.message || "An error occured",
+      });
+    }
     console.error("ERROR 💥️");
     console.log(err);
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Something went wrong!",
     });
   }
+  //RENDERED SITE
+  if (err.isOperational) {
+    return res.status(err.statusCode).render("error", {
+      title: "Not Found",
+      msg: err.message,
+    });
+  }
+  console.error("ERROR 💥️");
+  console.log(err);
+  return res.status(err.statusCode).render("error", {
+    title: "Not Found",
+    msg: "Please try again later",
+  });
 };
 
 module.exports = (err, req, res, next) => {
@@ -54,7 +75,7 @@ module.exports = (err, req, res, next) => {
 
   if (process.env.NODE_ENV === "development") {
     console.log(err);
-    sendErrorDev(err, res);
+    return sendErrorDev(err, req, res);
   } else if (process.env.NODE_ENV === "production") {
     let error = { ...err };
     error.message = err.message;
@@ -69,7 +90,6 @@ module.exports = (err, req, res, next) => {
     } else if (err.name === "TokenExpiredError") {
       error = handlExpiredJWTError();
     }
-
-    sendErrorProd(error, res);
+    sendErrorProd(error, req, res);
   }
 };

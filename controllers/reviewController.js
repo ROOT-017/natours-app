@@ -10,7 +10,7 @@ exports.setTourUserIds = catchAsync(async (req, res, next) => {
 });
 
 exports.createReview = factory.createOne(Review);
-
+//
 exports.getAllReviews = factory.getAll(Review);
 exports.getReview = factory.updateOne(Review);
 exports.updateReview = factory.updateOne(Review);

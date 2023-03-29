@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: [true, "Confirm password is required"],
     minLength: 8,
+    select: false,
 
     validate: {
       validator: function (val) {
@@ -38,6 +39,7 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: Date,
   photo: {
     type: String,
+    default: "default.jpg",
   },
   role: {
     type: String,
@@ -82,9 +84,12 @@ userSchema.methods.correctPassword = async function (
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
-userSchema.methods.changePasswordAfter = async function (JWTTimestamp) {
+userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   if (this.passwordChangeAt) {
-    const changedTimeStamp = parseInt(this.passwordChangeAt.getTime(), 10);
+    const changedTimeStamp = parseInt(
+      this.passwordChangeAt.getTime() / 1000,
+      10
+    );
     return JWTTimestamp * 1000 < changedTimeStamp; //Multipling to bing the time to milliseconds
   }
   return false;

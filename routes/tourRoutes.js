@@ -23,6 +23,10 @@ router
     authController.restictTo("admin", "lead-guide", "guide"),
     tourControllers.getMonthlyPlan
   );
+router.route("/distances/:latlng/unit/:unit").get(tourControllers.getDistances);
+router
+  .route("/tours-within/:distance/center/:latlng/unit/:unit")
+  .get(tourControllers.getToursWithin);
 
 router
   .route("/")
@@ -38,6 +42,8 @@ router
   .patch(
     authController.protect,
     authController.restictTo("admin", "lead-guide"),
+    tourControllers.uploadTourImages,
+    tourControllers.reSizeTourImages,
     tourControllers.updateTour
   )
   .delete(

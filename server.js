@@ -22,11 +22,11 @@ mongoose
     useFindAndModify: false,
     useUnifiedTopology: true,
   })
-  .then(() => console.info("DB connection Sucessfull")); // eslint-disable-line
+  .then(() => console.info("DB connection Sucessfull🤗️")); // eslint-disable-line
 
 const port = process.env.PORT || 8000;
 const server = app.listen(port, () => {
-  console.log(`App runing on port ${port}..`);
+  console.log(`App runing on port ${port}..👂️`);
 });
 
 process.on("unhandledRejection", err => {
