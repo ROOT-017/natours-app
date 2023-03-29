@@ -39,7 +39,6 @@ if (userPasswordForm) {
     const passwordCurrent = document.getElementById("password-current").value;
     const password = document.getElementById("password").value;
     const passwordConfirm = document.getElementById("password-confirm").value;
-    console.log(password, passwordConfirm);
     await updateSettings(
       { passwordCurrent, password, passwordConfirm },
       "password"
@@ -55,7 +54,6 @@ if (bookBtn) {
   bookBtn.addEventListener("click", e => {
     e.target.textContent = "Processing...";
     const { tourId } = e.target.dataset;
-    console.log(tourId);
     bookTour(tourId);
   });
 

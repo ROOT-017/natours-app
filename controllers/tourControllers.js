@@ -161,7 +161,6 @@ exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
 
 exports.getToursWithin = catchAsync(async (req, res, next) => {
   const { distance, unit, latlng } = req.params;
-  console.log(latlng.split(","));
   const [lat, lng] = latlng.split(",");
 
   const radianRadius = unit === "mi" ? distance / 3963.2 : distance / 6378.1;
@@ -193,7 +192,6 @@ exports.getToursWithin = catchAsync(async (req, res, next) => {
 
 exports.getDistances = catchAsync(async (req, res, next) => {
   const { unit, latlng } = req.params;
-  console.log(latlng.split(","));
 
   const unitMultiplier = unit === "mi" ? 0.000621371 : 0.001;
   const [lat, lng] = latlng.split(",");
