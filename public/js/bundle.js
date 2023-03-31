@@ -12066,6 +12066,7 @@ var logout = /*#__PURE__*/function () {
 }();
 exports.logout = logout;
 },{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"updateSettings.js":[function(require,module,exports) {
+var define;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12087,29 +12088,30 @@ var updateSettings = /*#__PURE__*/function () {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          url = type === "password" ? "http://127.0.0.1:3000/api/v1/users/updatemypassword" : "http://127.0.0.1:3000/api/v1/users/updateme";
-          _context.next = 4;
+          if ("development" === "production") url = type === "password" ? "".concat(undefined, "/api/v1/users/updatemypassword") : "".concat(undefined, "/api/v1/users/updatemypassword");
+          if ("development" === "development") url = type === "password" ? "http://127.0.0.1:3000/api/v1/users/updatemypassword" : "http://127.0.0.1:3000/api/v1/users/updateme";
+          _context.next = 5;
           return (0, _axios.default)({
             method: "PATCH",
             url: url,
             data: data
           });
-        case 4:
+        case 5:
           res = _context.sent;
           if (res.data.status === "success") {
             (0, _alerts.showAlert)("success", "".concat(type.toUpperCase(), " updated succcessfully"));
           }
-          _context.next = 11;
+          _context.next = 12;
           break;
-        case 8:
-          _context.prev = 8;
+        case 9:
+          _context.prev = 9;
           _context.t0 = _context["catch"](0);
           (0, _alerts.showAlert)("error", _context.t0.response.data.message);
-        case 11:
+        case 12:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 9]]);
   }));
   return function updateSettings(_x, _x2) {
     return _ref.apply(this, arguments);
