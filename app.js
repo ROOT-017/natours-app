@@ -6,7 +6,7 @@ const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
-const cors = rquire("cors");
+const cors = require("cors");
 
 const compression = require("compression");
 const cookieParser = require("cookie-parser");
@@ -19,6 +19,7 @@ const tourRouter = require("./routes/tourRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
 const viewRouter = require("./routes/viewRoutes");
 const bookingRouter = require("./routes/bookingRoutes");
+const bookingControllers = require("./controllers/bookingControllers");
 
 const app = express();
 
@@ -58,6 +59,12 @@ const limiter = rateLimit({
 });
 
 app.use("/api", limiter);
+
+app.post(
+  "/webhooks-checkout",
+  express.raw({ type: "application/json" }),
+  bookingControllers.webhookCheckout
+);
 
 //Body parser, reading data form body into req.body
 app.use(express.json({ limit: "10kb" }));

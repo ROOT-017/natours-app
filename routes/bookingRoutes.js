@@ -11,10 +11,8 @@ router.get(
 );
 
 router.use(authController.protect);
-router
-  .route("/")
-  .get(bookingControllers.getAllBookings)
-  .post(bookingControllers.createBooking);
+router.route("/").get(bookingControllers.getAllBookings);
+// .post(bookingControllers.createBooking);
 router
   .route("/:id")
   .get(bookingControllers.getBooking)
