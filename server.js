@@ -14,7 +14,8 @@ const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
   process.env.DATABASE_PASSWORD
 ).replace("<NAME>", process.env.DATABASE_NAME);
-
+const port = process.env.PORT || 8000;
+var server;
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
@@ -22,12 +23,12 @@ mongoose
     useFindAndModify: false,
     useUnifiedTopology: true,
   })
-  .then(() => console.info("DB connection Sucessfull🤗️")); // eslint-disable-line
-
-const port = process.env.PORT || 8000;
-const server = app.listen(port, () => {
-  console.log(`App runing on port ${port}..👂️`);
-});
+  .then(() => {
+    console.info("DB connection Sucessfull🤗️");
+    server = app.listen(port, () => {
+      console.log(`App runing on port ${port}..👂️`);
+    });
+  }); // eslint-disable-line
 
 process.on("unhandledRejection", err => {
   console.error(err.name);
