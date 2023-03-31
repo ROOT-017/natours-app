@@ -8,7 +8,7 @@ export const updateSettings = async (data, type) => {
       url =
         type === "password"
           ? `${process.env.HOST}/api/v1/users/updatemypassword`
-          : `${process.env.HOST}/api/v1/users/updatemypassword`;
+          : `${process.env.HOST}/api/v1/users/updateme`;
     if (process.env.NODE_ENV === "development")
       url =
         type === "password"
