@@ -3,6 +3,9 @@ import { login, logout } from "./login";
 import { updateSettings } from "./updateSettings";
 import { bookTour } from "./stripe";
 
+import { alerts } from "../../controllers/viewsController";
+import { showAlert } from "./alerts";
+
 const loginForm = document.querySelector("#form");
 const logoutBtn = document.querySelector(".nav__el--logout");
 const saveSettings = document.querySelector(".form-user-data");
@@ -59,3 +62,6 @@ if (bookBtn) {
 
   //alert("dkjfhlkdj");
 }
+
+const alertMessage = document.querySelector("body").dataset.alert;
+if (alertMessage) showAlert("success", alertMessage, 10);
