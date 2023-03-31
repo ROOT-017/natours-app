@@ -3,8 +3,8 @@ import { login, logout } from "./login";
 import { updateSettings } from "./updateSettings";
 import { bookTour } from "./stripe";
 
-import { alerts } from "../../controllers/viewsController";
-import { showAlert } from "./alerts";
+// import { alerts } from "../../controllers/viewsController";
+// import { showAlert } from "./alerts";
 
 const loginForm = document.querySelector("#form");
 const logoutBtn = document.querySelector(".nav__el--logout");
@@ -63,5 +63,5 @@ if (bookBtn) {
   //alert("dkjfhlkdj");
 }
 
-const alertMessage = document.querySelector("body").dataset.alert;
-if (alertMessage) showAlert("success", alertMessage, 10);
+// const alertMessage = document.querySelector("body").dataset.alert;
+// if (alertMessage) showAlert("success", alertMessage, 10);
