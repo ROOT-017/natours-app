@@ -6,7 +6,7 @@ const Booking = require("../models/bookingModel");
 const factory = require("./handlerFactory.js");
 
 exports.alerts = (res, req, next) => {
-  const { alert } = req.query;
+  const { alert } = req.query || "";
   if (alert === "booking")
     res.locals.alert = `Yur booking was successful. Please check your email for confirmation \n
      If your booking doesent shows here immediately, Please come back later`;
