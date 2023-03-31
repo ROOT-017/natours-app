@@ -6,6 +6,7 @@ const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
+const cors = rquire("cors");
 
 const compression = require("compression");
 const cookieParser = require("cookie-parser");
@@ -28,7 +29,11 @@ app.set("views", path.join(__dirname, "views"));
 //Serving static files
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(compression())
+app.use(compression());
+
+app.use(cors());
+
+app.options("*", cors());
 
 // console.log(process.env.NODE_ENV);
 // console.log(process.env.DATABASE);
