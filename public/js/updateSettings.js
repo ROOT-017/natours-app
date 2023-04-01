@@ -21,7 +21,10 @@ export const updateSettings = async (data, type) => {
     });
 
     if (res.data.status === "success") {
-      showAlert("success", `${type.toUpperCase()} updated succcessfully`);
+      showAlert(
+        "success",
+        `${type === "password" ? "Password" : "Bio data"} updated succcessfully`
+      );
     }
   } catch (err) {
     showAlert("error", err.response.data.message);
