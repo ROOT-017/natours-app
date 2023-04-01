@@ -3,17 +3,11 @@ import { showAlert } from "./alerts";
 //type is either 'data or password
 export const updateSettings = async (data, type) => {
   try {
-    var url = "";
-    if (process.env.NODE_ENV === "production")
-      url =
-        type === "password"
-          ? `/api/v1/users/updatemypassword` //changed
-          : `/api/v1/users`;
-    if (process.env.NODE_ENV === "development")
-      url =
-        type === "password"
-          ? "http://127.0.0.1:3000/api/v1/users/updatemypassword"
-          : "http://127.0.0.1:3000/api/v1/users/updateme";
+    const url =
+      type === "password"
+        ? `/api/v1/users/updatemypassword`
+        : `/api/v1/users/updateme`;
+
     const res = await axios({
       method: "PATCH",
       url,
