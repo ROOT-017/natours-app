@@ -7,8 +7,8 @@ export const updateSettings = async (data, type) => {
     if (process.env.NODE_ENV === "production")
       url =
         type === "password"
-          ? `https://natours-app-7j5x.onrender.com/api/v1/users/updatemypassword` //changed
-          : `https://natours-app-7j5x.onrender.com/api/v1/users/updateme`;
+          ? `/api/v1/users/updatemypassword` //changed
+          : `/api/v1/users/updateme`;
     if (process.env.NODE_ENV === "development")
       url =
         type === "password"
