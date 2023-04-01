@@ -2,8 +2,8 @@ import axios from "axios";
 import { showAlert } from "./alerts";
 //type is either 'data or password
 export const updateSettings = async (data, type) => {
-  let url;
   try {
+    var url = "";
     if (process.env.NODE_ENV === "production")
       url =
         type === "password"
