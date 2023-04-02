@@ -12144,7 +12144,7 @@ var bookTour = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: "GET",
-            url: "/api/v1/bookings/checkout-session/:".concat(tourId, "}")
+            url: "/api/v1/bookings/checkout-session/".concat(tourId, "}")
           });
         case 3:
           session = _context.sent;
