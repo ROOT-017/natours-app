@@ -9,8 +9,10 @@ const Booking = require("../models/bookingModel");
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   const { tourId } = req.params;
+
   //1 get currently booked tour
   const tour = await Tour.findById(tourId);
+  console.log(req.params);
 
   //2)Create check-out sessioon
   const session = await stripe.checkout.sessions.create({

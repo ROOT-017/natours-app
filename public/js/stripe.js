@@ -9,7 +9,7 @@ export const bookTour = async tourId => {
   try {
     const session = await axios({
       method: "GET",
-      url: `/api/v1/bookings/checkout-session/${tourId}}`,
+      url: `/api/v1/bookings/checkout-session/${tourId}`,
     });
     //2) CReate checkout form
     // await stripe.redirectToCheckout({

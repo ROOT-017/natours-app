@@ -12144,7 +12144,7 @@ var bookTour = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: "GET",
-            url: "/api/v1/bookings/checkout-session/".concat(tourId, "}")
+            url: "/api/v1/bookings/checkout-session/".concat(tourId)
           });
         case 3:
           session = _context.sent;
@@ -12372,6 +12372,7 @@ if (bookBtn) {
   bookBtn.addEventListener("click", function (e) {
     e.target.textContent = "Processing...";
     var tourId = e.target.dataset.tourId;
+    //console.log(e.target.dataset);
     (0, _stripe.bookTour)(tourId);
   });
 
