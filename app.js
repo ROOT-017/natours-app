@@ -1,4 +1,3 @@
-const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
@@ -7,6 +6,8 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const cors = require("cors");
+const path = require("path");
+
 
 const compression = require("compression");
 const cookieParser = require("cookie-parser");
@@ -69,15 +70,16 @@ app.post(
 );
 
 //Body parser, reading data form body into req.body
-app.use(express.json({ limit: "10kb" }));
-app.use(cookieParser());
-app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(express.json({ limit: "10kb" }));//Data sanitization against NoSQL  
+app.use(cookieParser());//Parses cookie
+app.use(express.urlencoded({ extended: true, limit: "10kb" }));//Data sanitization against NoSQL
 
 //Data santzation against NoSQL
 app.use(mongoSanitize());
 //Data sanitization against XSS
 app.use(xss());
 
+//
 app.use(
   hpp({
     whitelist: [

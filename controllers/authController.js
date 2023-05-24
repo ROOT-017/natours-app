@@ -106,6 +106,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     token,
     process.env.JWT_SECRET_KEY
   );
+  console.log(req.cookies)
   //3)Check if user still exist
   const currentUser = await User.findById(decoded.id);
 

@@ -3,8 +3,8 @@ const AppError = require("../utils/appError");
 
 const catchAsync = require("../utils/catchAsync");
 
-const multer = require("multer");
-const sharp = require("sharp");
+const multer = require("multer");//for uploading images
+const sharp = require("sharp");//for resizing images
 
 // const multerStorage = multer.diskStorage({
 //   destination: (req, file, cb) => {
@@ -16,12 +16,12 @@ const sharp = require("sharp");
 //   },
 // });
 
-const multerStorage = multer.memoryStorage();
+const multerStorage = multer.memoryStorage();//for storing images in memory
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
-  } else {
+  } else {single("file")
     cb(new AppError("Not an image, Please uplaod only images"), false);
   }
 };
